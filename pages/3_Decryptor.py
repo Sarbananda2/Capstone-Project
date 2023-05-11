@@ -1,56 +1,83 @@
+# Importing Requirements
 import streamlit as st
 import Decryptor as dec
+from streamlit_lottie import st_lottie
+import requests
 
-# Page Title
-st.title("Decryption")
+# Function Definitions
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
-# Accepting Ciphertext from the User
-ciphertext = st.text_input(
-    label = "Ciphered Message",
-    placeholder = "Enter a String"
+# Preparing Image
+lottie_hello = load_lottieurl(
+    "https://assets5.lottiefiles.com/packages/lf20_i1e4j8gy.json"
 )
 
-# Waiting till Ciphertext is entered by the User
-if not ciphertext:
-    st.stop()
+# Set up the two columns
+col1, col2 = st.columns(2)
 
-# Accepting Key for Vernam Cipher from the User
-keyForVernamCipher = st.text_input(
-    label = "Key for Vernam Cipher",
-    type = "password",
-    placeholder = "Enter a String greater than 10 characters"
-)
+# Add content to the right column
+with col2:
+    st_lottie(
+        lottie_hello,
+        key = " "
+    )
 
-# Waiting till Key is entered by the User
-if not keyForVernamCipher:
-    st.stop()
+# Add content to the left column
+with col1:
+    # Page Title
+    st.title("Decryption")
 
-# Accepting Key for Feistel Cipher from the User
-keyforFeistelCipher = st.text_input(
-    label = "Key for Feistel Cipher",
-    type = "password",
-    placeholder = "Enter a String"
-)
+    # Accepting Ciphertext from the User
+    ciphertext = st.text_input(
+        label = "Ciphered Message",
+        placeholder = "Enter a String"
+    )
 
-# Waiting till Message is entered by the User
-if not keyforFeistelCipher:
-    st.stop()
+    # Waiting till Ciphertext is entered by the User
+    if not ciphertext:
+        st.stop()
 
-# Accepting Key for AES Cipher from the User
-keyForAES = st.text_input(
-    label = "Key for AES Cipher",
-    type = "password",
-    placeholder = "Enter a String"
-)
+    # Accepting Key for Vernam Cipher from the User
+    keyForVernamCipher = st.text_input(
+        label = "Key for Vernam Cipher",
+        type = "password",
+        placeholder = "Enter a String greater than 10 characters"
+    )
 
-# Waiting till Message is entered by the User
-if not keyForAES:
-    st.stop()
+    # Waiting till Key is entered by the User
+    if not keyForVernamCipher:
+        st.stop()
 
-# Triggering Encryption
-button = st.button(
-    label = "Decrypt"
-)
+    # Accepting Key for Feistel Cipher from the User
+    keyforFeistelCipher = st.text_input(
+        label = "Key for Feistel Cipher",
+        type = "password",
+        placeholder = "Enter a String"
+    )
+
+    # Waiting till Message is entered by the User
+    if not keyforFeistelCipher:
+        st.stop()
+
+    # Accepting Key for AES Cipher from the User
+    keyForAES = st.text_input(
+        label = "Key for AES Cipher",
+        type = "password",
+        placeholder = "Enter a String"
+    )
+
+    # Waiting till Message is entered by the User
+    if not keyForAES:
+        st.stop()
+
+    # Triggering Encryption
+    button = st.button(
+        label = "Decrypt"
+    )
 
 # Displaying Output
 if button:
