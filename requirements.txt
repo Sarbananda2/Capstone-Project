@@ -1,2 +1,4 @@
 pycryptodome==3.17
+Requests==2.30.0
 streamlit==1.22.0
+streamlit_lottie==0.0.3
