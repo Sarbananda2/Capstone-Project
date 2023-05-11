@@ -1,7 +1,7 @@
 # Importing Requirements
 import streamlit as st
 import Decryptor as dec
-from streamlit_lottie import st_lottie
+import streamlit_lottie
 import requests
 
 # Function Definitions
@@ -21,7 +21,7 @@ col1, col2 = st.columns(2)
 
 # Add content to the right column
 with col2:
-    st_lottie(
+    streamlit_lottie.st_lottie(
         lottie_hello,
         key = " "
     )

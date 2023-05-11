@@ -1,6 +1,6 @@
 # Importing Requirements
 import streamlit as st
-from streamlit_lottie import st_lottie
+import streamlit_lottie
 import requests
 
 # Function Definitions
@@ -45,7 +45,7 @@ with col1:
 
 # Add content to the right column
 with col2:
-    st_lottie(
+    streamlit_lottie.st_lottie(
         lottie_hello,
         key = " "
     )
