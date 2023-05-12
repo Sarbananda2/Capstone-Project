@@ -6,6 +6,7 @@ import requests
 
 # Setting Page Configuration
 st.set_page_config(
+    page_title = "Decryptor",
     layout = "wide",
     initial_sidebar_state = "collapsed"
 )
@@ -36,7 +37,7 @@ col1, col2 = st.columns(2)
 with col2:
     streamlit_lottie.st_lottie(
         lottie_hello,
-        key = " "
+        key = "Animation on Decryptor Page"
     )
 
 # Add content to the left column
@@ -59,7 +60,7 @@ with col1:
     keyForVernamCipher = st.text_input(
         label = "Key for Vernam Cipher",
         type = "password",
-        placeholder = "Enter a String greater than 10 characters"
+        placeholder = "Enter a String"
     )
 
     # Waiting till Key is entered by the User
@@ -88,14 +89,12 @@ with col1:
     if not keyForAES:
         st.stop()
 
-    # Triggering Encryption
-    button = st.button(
-        label = "Decrypt"
-    )
-
-    # Displaying Output
-    if button:
+    # Triggering Button
+    if st.button(label = "Decrypt"):
+        # Producing Plaintext
         plaintext = dec.startDecryption(ciphertext, keyForAES, keyforFeistelCipher, keyForVernamCipher)
+
+        # Displaying Output
         if plaintext is None:
             pass
         else:

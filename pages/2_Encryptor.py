@@ -6,6 +6,7 @@ import requests
 
 # Setting Page Configuration
 st.set_page_config(
+    page_title = "Encryptor",
     layout = "wide",
     initial_sidebar_state = "collapsed"
 )
@@ -36,14 +37,13 @@ col1, col2 = st.columns(2)
 with col2:
     streamlit_lottie.st_lottie(
         lottie_hello,
-        key = " "
+        key = "Animation on Encryptor Page"
     )
 
 # Add content to the left column
 with col1:
     # Page Title
     st.title("Encryption")
-
 
     # Accepting Message from the User
     message = st.text_input(
@@ -57,7 +57,6 @@ with col1:
         st.stop()
     else:
         messageLength = len(message)
-
 
     # Accepting Key for Vernam Cipher from the User
     keyForVernamCipher = st.text_input(
@@ -73,7 +72,6 @@ with col1:
         if len(keyForVernamCipher) > messageLength:
             st.warning(f"Enter a String smaller than or equal to {messageLength} characters")
             st.stop()
-
 
     # Accepting Key for Feistel Cipher from the User
     keyforFeistelCipher = st.text_input(
@@ -98,12 +96,10 @@ with col1:
         st.stop()
 
     # Triggering Encryption
-    button = st.button(
-        label = "Encrypt", 
-    )
-
-    # Displaying Output
-    if button:
+    if st.button(label = "Encrypt"):
+        # Producing Ciphertext
         ciphertext = enc.startEncryption(message, keyForVernamCipher, keyforFeistelCipher, keyForAES)
+
+        # Displaying Output
         st.info(f'Ciphertext: {ciphertext}')
         st.session_state["Ciphertext"] = ciphertext

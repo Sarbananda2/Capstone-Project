@@ -6,6 +6,7 @@ from streamlit_extras.switch_page_button import switch_page
 
 # Setting Page Configuration
 st.set_page_config(
+    page_title = "Home",
     layout = "wide",
     initial_sidebar_state = "collapsed"
 )
