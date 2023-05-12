@@ -4,6 +4,12 @@ import Decryptor as dec
 import streamlit_lottie
 import requests
 
+# Setting Page Configuration
+st.set_page_config(
+    layout = "wide",
+    initial_sidebar_state = "collapsed"
+)
+
 # Function Definitions
 def load_lottieurl(url: str):
     r = requests.get(url)
@@ -15,6 +21,13 @@ def load_lottieurl(url: str):
 lottie_hello = load_lottieurl(
     "https://assets5.lottiefiles.com/packages/lf20_i1e4j8gy.json"
 )
+
+# Preparaing Session State
+if "Plaintext" not in st.session_state:
+    st.session_state["Plaintext"]  = ""
+
+if "Ciphertext" not in st.session_state:
+    st.session_state["Ciphertext"] = ""
 
 # Set up the two columns
 col1, col2 = st.columns(2)
@@ -34,7 +47,8 @@ with col1:
     # Accepting Ciphertext from the User
     ciphertext = st.text_input(
         label = "Ciphered Message",
-        placeholder = "Enter a String"
+        placeholder = "Enter a String",
+        value = st.session_state["Ciphertext"]
     )
 
     # Waiting till Ciphertext is entered by the User
@@ -79,7 +93,11 @@ with col1:
         label = "Decrypt"
     )
 
-# Displaying Output
-if button:
-    plaintext = dec.startDecryption(ciphertext, keyForAES, keyforFeistelCipher, keyForVernamCipher)
-    st.info(f'Plaintext: {plaintext}')
+    # Displaying Output
+    if button:
+        plaintext = dec.startDecryption(ciphertext, keyForAES, keyforFeistelCipher, keyForVernamCipher)
+        if plaintext is None:
+            pass
+        else:
+            st.info(f'Plaintext: {plaintext}')
+            st.session_state["Plaintext"] = plaintext

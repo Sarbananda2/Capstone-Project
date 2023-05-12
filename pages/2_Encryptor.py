@@ -4,6 +4,12 @@ import Encryptor as enc
 import streamlit_lottie
 import requests
 
+# Setting Page Configuration
+st.set_page_config(
+    layout = "wide",
+    initial_sidebar_state = "collapsed"
+)
+
 # Function Definitions
 def load_lottieurl(url: str):
     r = requests.get(url)
@@ -15,6 +21,13 @@ def load_lottieurl(url: str):
 lottie_hello = load_lottieurl(
     "https://assets5.lottiefiles.com/packages/lf20_qj1esxnx.json"
 )
+
+# Preparaing Session State
+if "Plaintext" not in st.session_state:
+    st.session_state["Plaintext"]  = ""
+
+if "Ciphertext" not in st.session_state:
+    st.session_state["Ciphertext"] = ""
 
 # Set up the two columns
 col1, col2 = st.columns(2)
@@ -35,7 +48,8 @@ with col1:
     # Accepting Message from the User
     message = st.text_input(
         label = "Plain Message",
-        placeholder = "Enter a String"
+        placeholder = "Enter a String",
+        value = st.session_state["Plaintext"]
     )
 
     # Waiting till Message is entered by the User
@@ -88,7 +102,8 @@ with col1:
         label = "Encrypt", 
     )
 
-# Displaying Output
-if button:
-    ciphertext = enc.startEncryption(message, keyForVernamCipher, keyforFeistelCipher, keyForAES)
-    st.info(f'Ciphertext: {ciphertext}')
+    # Displaying Output
+    if button:
+        ciphertext = enc.startEncryption(message, keyForVernamCipher, keyforFeistelCipher, keyForAES)
+        st.info(f'Ciphertext: {ciphertext}')
+        st.session_state["Ciphertext"] = ciphertext

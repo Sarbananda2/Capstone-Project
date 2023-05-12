@@ -2,6 +2,13 @@
 import streamlit as st
 import streamlit_lottie
 import requests
+from streamlit_extras.switch_page_button import switch_page
+
+# Setting Page Configuration
+st.set_page_config(
+    layout = "wide",
+    initial_sidebar_state = "collapsed"
+)
 
 # Function Definitions
 def load_lottieurl(url: str):
@@ -21,6 +28,13 @@ lottie_hello = load_lottieurl(
     "https://assets6.lottiefiles.com/packages/lf20_xqy8h6ej.json"
 )
 
+# Preparaing Session State
+if "Plaintext" not in st.session_state:
+    st.session_state["Plaintext"]  = ""
+
+if "Ciphertext" not in st.session_state:
+    st.session_state["Ciphertext"] = ""
+
 # Set up the two columns
 col1, col2 = st.columns(2)
 
@@ -35,13 +49,11 @@ with col1:
     # Header
     st.text("Select Operation")
 
-    st.button(
-        label = "Encryption"
-    )
+    if st.button(label = "Encryption"):
+        switch_page("Encryptor")
 
-    st.button(
-        label = "Decryption"
-    )
+    if st.button(label = "Decryption"):
+        switch_page("Decryptor")
 
 # Add content to the right column
 with col2:
