@@ -36,7 +36,7 @@ def startDecryption(ciphertext, AESKey, FeistelKey, VernamKey):
 
   # checking if ciphertext or key is valid or not
   if ciphertextLength == 0:
-    st.info("Either Ciphertext, keys are invalid")
+    st.info("Either Ciphertext or keys are invalid")
     return
 
 
