@@ -1,9 +1,9 @@
 import streamlit as st
 
-user_input = [int(x) for x in st.text_input("Enter List 01: ").strip().split()]
-keyList = [int(x) for x in st.text_input("Enter List 02: ").strip().split()]
+try: 
+    user_input = [int(x) for x in st.text_input("Enter List 01: ").strip().split()]
+    keyList = [int(x) for x in st.text_input("Enter List 02: ").strip().split()]
 
-try:
     def showOutput():
         # print("Output:", end = " ")
         newString = ""
