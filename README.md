@@ -35,13 +35,13 @@ To get started with this application, make sure you have Python installed on you
 git clone https://github.com/your-username/encryption-app.git
 ```
 
-Install the required dependencies using pip.
+2. Install the required dependencies using pip.
 ```bash
 Copy code
 pip install -r requirements.txt
 ```
 
-Run the application.
+3. Run the application.
 ```bash
 Copy code
 python main.py
