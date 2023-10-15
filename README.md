@@ -37,13 +37,11 @@ git clone https://github.com/your-username/encryption-app.git
 
 2. Install the required dependencies using pip.
 ```bash
-Copy code
 pip install -r requirements.txt
 ```
 
 3. Run the application.
 ```bash
-Copy code
 python main.py
 ```
 
