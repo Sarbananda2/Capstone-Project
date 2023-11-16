@@ -10,6 +10,7 @@ This is a Python application for encrypting and decrypting messages using variou
 - [Encryption](#encryption)
 - [Decryption](#decryption)
 - [License](#license)
+- [Application Access](#application-access)
 
 ## Introduction
 
@@ -62,3 +63,6 @@ Click the "Decrypt" button to retrieve the original plaintext.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Application Access
+Visit https://sarbananda2-capstone-project-home-h7tosa.streamlit.app/ and try the Application. 
